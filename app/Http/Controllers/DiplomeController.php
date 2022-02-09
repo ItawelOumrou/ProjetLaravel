@@ -53,8 +53,8 @@ class DiplomeController extends Controller
         ),
         [
            
-            'intitule.regex'=> "l'intitule doit commencer par une lettre majuscule",
-            'nomEtablissement.regex'=> "le nom de l'etablissement doit commencer par une lettre majuscule",
+            'intitule.regex'=> "l'intitule doit commencer par une lettre majuscule ou l'intitulé sélectionné n'est pas valide",
+            'nomEtablissement.regex'=> "le nom de l'etablissement doit commencer par une lettre majuscule ou le nom de l'etablissement sélectionné n'est pas valide",
             
         ]);
         $et = new Diplome();
@@ -129,9 +129,17 @@ class DiplomeController extends Controller
      */
     public function destroy($id)
     {
+        $count = DB::select('select count(reference) from diplomes');
+dd($count);
+        if(count($count) == 1){
+            Session::flash('icom','error');
+            return redirect('diplomes')->with('titre',"Vous n'avez pas le droit de supprimer cette diplome");
+        }
+        
         DB::table('diplomes')->where('id', $id)->delete();
 
         Session::flash('icom','error');
         return redirect('diplomes')->with('titre','Diplome supprimer avec succès');
+    
     }
 }

@@ -16,7 +16,7 @@
                     <div class="form-group @if($errors->get('matricule')) has-error @endif">
                             <label for="">Matricule :</label>
                             <input type="text" name="matricule" class="form-control" value="{{ $list->matricule}}"
-                            onkeyup="return valideMatricule(this.value);" required>
+                            required> <!--  onkeyup="return valideMatricule(this.value);" -->
                             @if($errors->has('matricule'))
                             <span class="text-danger">
                                 {{ $errors->first('matricule') }}
@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group @if($errors->get('email')) has-error @endif">
                         <label for="">Email :</label>
-                            <input type="text"    name="email" class="form-control"  onkeyup="return valideEmail(this.value);"
+                            <input type="text"    name="email" class="form-control"  
                                 
                                 value="{{$list->email}}" required > 
                             @if($errors->has('email'))
@@ -59,7 +59,7 @@
                             <input type="number" name="telephone" id="numtel"  class="form-control" 
                                 oninput="javascript: if (this.value.length > this.maxLength)
                                 this.value = this.value.slice(0, this.maxLength);" maxlength = "8" 
-                                value="{{$list->telephone}}" required onkeyup="return valide(this.value);"
+                                value="{{$list->telephone}}" required 
                                 placeholder="le numéro du téléphone doit commencer par 2 , 3 ou 4" autocomplete="off">
                             @if($errors->has('telephone'))
                                 <span class="text-danger">
@@ -73,7 +73,7 @@
                        
                         <div class="form-group mt-2">
                             <a href="{{url('etudiants')}}" class="btn btn-danger">Annuler</a>
-                        <input type="submit" id="bt"   value="Enregistrer" class="btn btn-success">
+                        <input type="submit"    value="Enregistrer" class="btn btn-success">
                         </div>
                     </form>
                 </div>

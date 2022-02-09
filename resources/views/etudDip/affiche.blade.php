@@ -15,8 +15,10 @@
                             @foreach($et as $ed)
                                 @if($liste->id == $ed->reference)   
                                     {{$liste->prenom}} {{$liste->nom}}
+                                    portant le matricule {{ $liste->matricule }}
                                     @break
                                 @endif
+                                
                             @endforeach
                         @endforeach
                         </h4>

@@ -51,28 +51,32 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
-            
-            'telephone'=>'size:8|required|unique:etudiants',
-            'email'=>'required|unique:etudiants',
-            'matricule'=>'required|unique:etudiants',
+            'nom' => 'regex:/^[A-Z]+[A-Za-z]+$/',
+            'prenom' => 'regex:/^[A-Z]+[A-Za-z]+$/',
+            'telephone'=>'size:8|required|unique:etudiants|regex:/^[234].*$/',
+            'email'=>'required|email|unique:etudiants',
+            'matricule'=>'required|unique:etudiants|regex:/^I[0-9]+$/',
             
             'intitule'=> 'regex:/^[A-Z]+[A-Za-z]+$/',
             'nomEtablissement' => 'regex:/^[A-Z]+[A-Za-z]+$/',
         ),
         [
-           
+           'nom.regex' => "le nom doit commencer par une lettre majuscule ou le nom sélectionné n'est pas valide",
+           'prenom.regex' => "le prenom doit commencer par une lettre majuscule ou le prenom sélectionné n'est pas valide",
             'intitule.regex'=> "l'intitule doit commencer par une lettre majuscule",
             'nomEtablissement.regex'=> "le nom de l'etablissement doit commencer par une lettre majuscule",
            
             'telephone.size'=> 'Ce champ doit comporter exactement 8 chiffres',
             'telephone.unique'=> "Ce numéro du téléphone est existe déjà",
             'telephone.required'=> "le numéro du téléphone est obligatoire",
+            'telephone.regex'=> "le numéro de téléphone doit commener par 2 , 3 ou 4",
 
             'email.unique'=> "Cet email est existe déjà",
             'email.required'=> "l'email' est obligatoire",
 
             'matricule.unique'=> "Ce matricule est existe déjà",
             'matricule.required'=> "le matricule est obligatoire",
+            'matricule.regex'=> "le matricule doit commencer par le lettre 'I'",
             
         ]);
 
@@ -136,24 +140,29 @@ class EtudiantController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, array(
-            
-            'telephone'=>'size:8|required|unique:etudiants,telephone,'.$id,
-            'email'=>'required|unique:etudiants,email,'.$id,
-            'matricule'=>'required|unique:etudiants,matricule,'.$id,
+            'nom' => 'regex:/^[A-Z]+[A-Za-z]+$/',
+            'prenom' => 'regex:/^[A-Z]+[A-Za-z]+$/',
+            'telephone'=>'|regex:/^[234].*$/|size:8|required|unique:etudiants,telephone,'.$id,
+            'email'=>'required|email|unique:etudiants,email,'.$id,
+            'matricule'=>'regex:/^I[0-9]+$/|required|unique:etudiants,matricule,'.$id,
             
            
         ),
         [
-           
+            'nom.regex' => "le nom doit commencer par une lettre majuscule ou le nom sélectionné n'est pas valide",
+            'prenom.regex' => "le prenom doit commencer par une lettre majuscule ou le prenom sélectionné n'est pas valide",
+            
             'telephone.size'=> 'le numero du telephone doit contenir 8 caractères',
             'telephone.unique'=> "Ce numéro du téléphone est  déjà utilisée",
             'telephone.required'=> "le numéro du téléphone est obligatoire",
+            'telephone.regex'=> "le numéro de téléphone doit commener par 2 , 3 ou 4",
 
             'email.unique'=> "Cet email est existe déjà",
             'email.required'=> "l'email' est obligatoire",
 
             'matricule.unique'=> "Ce matricule est existe déjà",
             'matricule.required'=> "le matricule est obligatoire",
+            'matricule.regex'=> "le matricule doit commencer par le lettre 'I'",
             
         ]);
         

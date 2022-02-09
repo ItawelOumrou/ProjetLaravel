@@ -14,7 +14,7 @@
                     {{csrf_field()}} 
                     <div class="form-group @if($errors->get('matricule')) has-error @endif">
                             <label for="">Matricule :</label>
-                            <input type="text" name="matricule" id="matricule" class="form-control"  onkeyup="return valideMatricule(this.value);"
+                            <input type="text" name="matricule" id="matricule" class="form-control"  
                              value="{{ old('matricule')}}" required>
                             @if($errors->has('matricule'))
                             <span class="text-danger">
@@ -46,7 +46,7 @@
                         <div class="form-group @if($errors->get('email')) has-error @endif">
                         <label for="">Email :</label>
                             <input type="text"    name="email" id="email" class="form-control" 
-                            onkeyup="return valideEmail(this.value);"
+                            
                                 value="{{ old('email')}}" required > 
                             @if($errors->has('email'))
                             <span class=" text-danger">
@@ -60,7 +60,7 @@
                             <input type="number" name="telephone" id="numtel"  class="form-control" 
                                 oninput="javascript: if (this.value.length > this.maxLength)
                                 this.value = this.value.slice(0, this.maxLength);" maxlength = "8" 
-                                value="{{ old('telephone')}}" required onkeyup="return valide(this.value);"
+                                value="{{ old('telephone')}}" required 
                                  autocomplete="off">
                             @if($errors->has('telephone'))
                                 <span class="text-danger">
@@ -92,7 +92,7 @@
                        
                         <div class="form-group mt-2">
                             <a href="{{url('etudiants')}}" class="btn btn-danger">Annuler</a>
-                        <input type="button" id="bt"   value="Enregistrer" class="btn btn-success">
+                        <input type="submit" id="bt"   value="Enregistrer" class="btn btn-success">
                         </div>
                     </form>
                 </div>
@@ -120,6 +120,8 @@
                             
                 
           }
+          </script>
+          <script>
           function valideEmail(email){
          
          var 
@@ -138,6 +140,8 @@
                        
            
      }
+     </script>
+     <script>
 
      function valideMatricule(matricule){
          
