@@ -186,6 +186,7 @@ class EtudiantController extends Controller
      */
     public function destroy($id)
     {
+        DB::table('diplomes')->where('reference', $id)->delete();
         DB::table('etudiants')->where('id', $id)->delete();
 
         Session::flash('icom','error');

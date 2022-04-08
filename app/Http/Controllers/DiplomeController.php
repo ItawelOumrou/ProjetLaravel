@@ -128,14 +128,14 @@ class DiplomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {/*
         $count = DB::select('select count(reference) from diplomes');
 dd($count);
         if(count($count) == 1){
             Session::flash('icom','error');
             return redirect('diplomes')->with('titre',"Vous n'avez pas le droit de supprimer cette diplome");
         }
-        
+        */
         DB::table('diplomes')->where('id', $id)->delete();
 
         Session::flash('icom','error');

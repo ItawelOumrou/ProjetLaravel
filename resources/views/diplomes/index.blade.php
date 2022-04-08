@@ -1,4 +1,7 @@
 @extends('template')
+ <!-- data table cdn Css -->
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!-- Fin data table cdn -->
 @section('content')
 <div class="container">
     <div class="row">
@@ -15,7 +18,7 @@
                     <h1>Liste des diplomes</h1>
                 </div>
                 <div class="card-body">
-                <table id="datatable"  class="table"  style="font-size: 15px"> 
+                <table id="data"  class="table"  style="font-size: 15px"> 
                             <thead class="table-primary">
                                 <tr>
                                     <th>Nom</th>
@@ -63,3 +66,37 @@
     </div>
 </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+        $(document).ready(function() {
+            $('#data').DataTable({
+              
+                "language": {
+                                  "decimal":        "",
+                                "emptyTable":     "aucune donnée disponible",
+                                "info":           "Affichage de _START_ à _END_ entrées sur _TOTAL_",
+                                "infoEmpty":      "Affichage de 0 à 0 sur 0 entrées",
+                                "infoFiltered":   "(filtré à partir de _MAX_ entrées totales)",
+                                "infoPostFix":    "",
+                                "thousands":      ",",
+                                "lengthMenu":     "Afficher les entrées _MENU_",
+                                "loadingRecords": "Chargement...",
+                                "processing":     "Traitement...",
+                                "search":         "Rechercher:",
+                                "zeroRecords":    "Aucun enregistrements correspondants trouvés",
+                                "paginate": {
+                                    "first":      "Première",
+                                    "last":       "Dernièr(e)",
+                                    "next":       "Prochain(e)",
+                                    "previous":   "Précédent(e)"
+                                },
+                                "aria": {
+                                    "sortAscending":  ": activer pour trier les colonnes par ordre croissant",
+                                    "sortDescending": ": activer pour trier les colonnes par ordre décroissant"
+                                }
+                    },
+                    "lengthMenu": [ 5,10, 25]
+        });
+        } );
+    </script>

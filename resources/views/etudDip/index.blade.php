@@ -1,4 +1,5 @@
 @extends('template')
+@extends('datatable')
 @section('content')
 
 <div class="container">
